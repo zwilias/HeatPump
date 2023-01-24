@@ -17,7 +17,7 @@
 #define __HeatPump_H__
 #include <stdint.h>
 #include <math.h>
-#include <HardwareSerial.h>
+#include <CustomSoftwareSerial.h>
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
 #else
@@ -190,7 +190,7 @@ class HeatPump
 
     heatpumpFunctions functions;
   
-    HardwareSerial * _HardSerial {nullptr};
+    CustomSoftwareSerial * _HardSerial {nullptr};
     unsigned long lastSend;
     bool waitForRead;
     int infoMode;
@@ -235,10 +235,10 @@ class HeatPump
 
     // general
     HeatPump();
-    bool connect(HardwareSerial *serial);
-    bool connect(HardwareSerial *serial, int bitrate);
-    bool connect(HardwareSerial *serial, int rx, int tx);
-    bool connect(HardwareSerial *serial, int bitrate, int rx, int tx);
+    bool connect(CustomSoftwareSerial *serial);
+    bool connect(CustomSoftwareSerial *serial, int bitrate);
+    bool connect(CustomSoftwareSerial *serial, int rx, int tx);
+    bool connect(CustomSoftwareSerial *serial, int bitrate, int rx, int tx);
     bool update();
     void sync(byte packetType = PACKET_TYPE_DEFAULT);
     void enableExternalUpdate();

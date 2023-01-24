@@ -84,19 +84,19 @@ HeatPump::HeatPump() {
 
 // Public Methods //////////////////////////////////////////////////////////////
 
-bool HeatPump::connect(HardwareSerial *serial) {
+bool HeatPump::connect(CustomSoftwareSerial *serial) {
   return connect(serial, -1, -1);
 }
 
-bool HeatPump::connect(HardwareSerial *serial, int bitrate) {
+bool HeatPump::connect(CustomSoftwareSerial *serial, int bitrate) {
 	return connect(serial, bitrate, -1, -1);
 }
 
-bool HeatPump::connect(HardwareSerial *serial, int rx, int tx) {
+bool HeatPump::connect(CustomSoftwareSerial *serial, int rx, int tx) {
 	return connect(serial, 0, rx, tx);
 }
 
-bool HeatPump::connect(HardwareSerial *serial, int bitrate, int rx, int tx) {
+bool HeatPump::connect(CustomSoftwareSerial *serial, int bitrate, int rx, int tx) {
   if(serial != NULL) {
     _HardSerial = serial;
   }
@@ -108,12 +108,12 @@ bool HeatPump::connect(HardwareSerial *serial, int bitrate, int rx, int tx) {
   connected = false;
   if (rx >= 0 && tx >= 0) {
 #if defined(ESP32)    
-    _HardSerial->begin(bitrate, SERIAL_8E1, rx, tx);
+    _HardSerial->begin(bitrate, CSERIAL_8E1, rx, tx);
 #else
-    _HardSerial->begin(bitrate, SERIAL_8E1);
+    _HardSerial->begin(bitrate, CSERIAL_8E1);
 #endif    
   } else {
-    _HardSerial->begin(bitrate, SERIAL_8E1);
+    _HardSerial->begin(bitrate, CSERIAL_8E1);
   }
   if(onConnectCallback) {
     onConnectCallback();
