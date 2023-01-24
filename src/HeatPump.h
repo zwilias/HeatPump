@@ -17,7 +17,7 @@
 #define __HeatPump_H__
 #include <stdint.h>
 #include <math.h>
-#include <CustomSoftwareSerial.h>
+#include "CustomSoftwareSerial.h"
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
 #else
